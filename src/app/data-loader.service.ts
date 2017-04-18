@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { NodeType } from './models/node-type';
 import * as d3 from 'd3';
 
 @Injectable()
@@ -37,18 +38,6 @@ export class DataLoader {
     }
 
     return this.nodesTypes;
-  }
-
-}
-
-class NodeType{
-
-  typeName:string;
-  numberOfThis:number;
-
-  constructor(typeName, numberOfThis) {
-      this.typeName = typeName;
-      this.numberOfThis = numberOfThis;
   }
 
 }

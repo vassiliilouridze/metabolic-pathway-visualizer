@@ -1,5 +1,6 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import {DataLoader} from '../data-loader.service';
+import { NodeType } from '../models/node-type';
 import * as d3 from 'd3';
 
 @Component({
@@ -24,18 +25,6 @@ export class HomeComponent implements OnInit, DoCheck {
       this.map_id = this.escherMap.map.map_id;
       this.nodesTypes = this.dataLoader.makeListNodeTypes();
     }
-  }
-
-}
-
-class NodeType{
-
-  typeName:string;
-  numberOfThis:number;
-
-  constructor(typeName, numberOfThis) {
-      this.typeName = typeName;
-      this.numberOfThis = numberOfThis;
   }
 
 }
