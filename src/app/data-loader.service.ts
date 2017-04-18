@@ -14,6 +14,9 @@ export class DataLoader {
   nodesTypesObject = {};
   newNodeType: NodeType;
   nodesTypes: NodeType[] = [];
+  genesTypesObject = {};
+  newGeneType: GeneType;
+  geneTypes: GeneType[] = [];
 
   constructor() { }
 
@@ -40,4 +43,37 @@ export class DataLoader {
     return this.nodesTypes;
   }
 
+  makeListGenesThatAreInMoreThanOneReaction(){
+    for(var i in this.escherMap.map.reactions){
+      for(var j in this.escherMap.map.reactions[i].genes){
+
+        if(this.genesTypesObject[this.escherMap.map.reactions[i].genes[j].name] != null){
+          this.genesTypesObject[this.escherMap.map.reactions[i].genes[j].name]++;
+        }else{
+          this.genesTypesObject[this.escherMap.map.reactions[i].genes[j].name] = 1;
+        }
+        
+      }
+    }
+
+    for(var i in this.genesTypesObject){
+      if(this.genesTypesObject[i] > 1 && i != 'None'){
+        var newGeneType = new GeneType(i,this.genesTypesObject[i]);
+        this.geneTypes.push(newGeneType);
+      }
+    }
+
+    return this.geneTypes;
+  }
+
+}
+
+class GeneType{
+  geneName:string;
+  numberOfReactionsThatIsPartOf:number;
+
+  constructor(geneName, numberOfReactionsThatIsPartOf) {
+      this.geneName = geneName;
+      this.numberOfReactionsThatIsPartOf = numberOfReactionsThatIsPartOf;
+  }
 }

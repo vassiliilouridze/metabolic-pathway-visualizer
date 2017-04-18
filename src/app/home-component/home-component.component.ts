@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit, DoCheck {
   escherMap:any;
   map_id:string = null;
   nodesTypes: NodeType[] = [];
+  geneTypes: GeneType[] = [];
 
   constructor(private dataLoader: DataLoader) { }
 
@@ -24,7 +25,18 @@ export class HomeComponent implements OnInit, DoCheck {
     if(this.map_id != this.escherMap.map.map_id){
       this.map_id = this.escherMap.map.map_id;
       this.nodesTypes = this.dataLoader.makeListNodeTypes();
+      this.geneTypes = this.dataLoader.makeListGenesThatAreInMoreThanOneReaction();
     }
   }
 
+}
+
+class GeneType{
+  geneName:string;
+  numberOfReactionsThatIsPartOf:number;
+
+  constructor(geneName, numberOfReactionsThatIsPartOf) {
+      this.geneName = geneName;
+      this.numberOfReactionsThatIsPartOf = numberOfReactionsThatIsPartOf;
+  }
 }
