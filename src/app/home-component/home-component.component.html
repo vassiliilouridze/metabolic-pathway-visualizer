@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            Escher map
+          </h3>
+        </div>
+        <div class="panel-body">
+          <div class="row_escher">
+            <div class="col-md-12">
+              <figure>
+                <div class="escher-container" id="map_container" style="height: 750px; width: 100%; overflow: hidden"></div>
+              </figure>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer">
+          Panel footer
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="row col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Nodes type list</h3>
+          </div>
+          <div class="panel-body">
+            <figure>
+              <li *ngFor="let nodeType of nodesTypes" style="list-style-type: none;">
+                {{ nodeType.typeName }} occurs {{ nodeType.numberOfThis }} times
+              </li>
+            </figure>
+          </div>
+        </div>
+      </div>
+      <div class="row col-md-12">
+        .col-md-4
+      </div>
+    </div>
+  </div>
+</div>
