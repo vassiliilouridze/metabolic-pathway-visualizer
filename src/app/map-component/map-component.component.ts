@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DataLoader} from '../data-loader.service';
 import * as d3 from 'd3';
 
 @Component({
@@ -8,22 +9,14 @@ import * as d3 from 'd3';
 })
 export class MapComponent implements OnInit {
 
-  options = { menu: 'all',
-              use_3d_transform: false,
-              enable_editing: false,
-              fill_screen: false,
-              reaction_styles: ['color', 'size', 'text'],
-              enable_tooltips: false };
-  escherMap:any;
 
-  constructor() { }
+
+  constructor(private dataLoader: DataLoader) { }
 
   ngOnInit() {
-     this.buildMap();
+     this.dataLoader.buildMap();
   }
 
-  buildMap(){
-    this.escherMap = escher.Builder(null, null, null, d3.select('#map_container'), this.options);
-  }
+
 
 }

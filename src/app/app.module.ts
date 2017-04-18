@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map-component/map-component.component';
 
+import {DataLoader} from './data-loader.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +18,7 @@ import { MapComponent } from './map-component/map-component.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [DataLoader],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
