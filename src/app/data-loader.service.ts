@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NodeType } from './models/node-type';
+import { GeneType } from './models/gene-type';
 import * as d3 from 'd3';
 
 @Injectable()
@@ -52,7 +53,7 @@ export class DataLoader {
         }else{
           this.genesTypesObject[this.escherMap.map.reactions[i].genes[j].name] = 1;
         }
-        
+
       }
     }
 
@@ -66,14 +67,4 @@ export class DataLoader {
     return this.geneTypes;
   }
 
-}
-
-class GeneType{
-  geneName:string;
-  numberOfReactionsThatIsPartOf:number;
-
-  constructor(geneName, numberOfReactionsThatIsPartOf) {
-      this.geneName = geneName;
-      this.numberOfReactionsThatIsPartOf = numberOfReactionsThatIsPartOf;
-  }
 }

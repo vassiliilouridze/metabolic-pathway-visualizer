@@ -1,6 +1,7 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import {DataLoader} from '../data-loader.service';
 import { NodeType } from '../models/node-type';
+import { GeneType } from '../models/gene-type';
 import * as d3 from 'd3';
 
 @Component({
@@ -29,14 +30,4 @@ export class HomeComponent implements OnInit, DoCheck {
     }
   }
 
-}
-
-class GeneType{
-  geneName:string;
-  numberOfReactionsThatIsPartOf:number;
-
-  constructor(geneName, numberOfReactionsThatIsPartOf) {
-      this.geneName = geneName;
-      this.numberOfReactionsThatIsPartOf = numberOfReactionsThatIsPartOf;
-  }
 }
