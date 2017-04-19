@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { DataLoaderService } from './data-loader.service';
+import { DataLoader} from './data-loader.service';
 
-describe('DataLoaderService', () => {
+describe('DataLoader', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DataLoaderService]
+      providers: [DataLoader]
     });
   });
 
-  it('should ...', inject([DataLoaderService], (service: DataLoaderService) => {
+  it('should ...', inject([DataLoader], (service: DataLoader) => {
     expect(service).toBeTruthy();
   }));
 });

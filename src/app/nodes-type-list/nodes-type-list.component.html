@@ -1,0 +1,14 @@
+<div class="row col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Nodes type list</h3>
+    </div>
+    <div class="panel-body">
+      <figure>
+        <li *ngFor="let nodeType of nodesTypes" style="list-style-type: none;">
+          {{ nodeType.typeName }} occurs {{ nodeType.numberOfThis }} times
+        </li>
+      </figure>
+    </div>
+  </div>
+</div>
