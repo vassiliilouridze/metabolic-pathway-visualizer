@@ -4,11 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { EscherMapComponent } from './escher-map/escher-map.component';
+import { EscherMapComponent } from './components/escher-map/escher-map.component';
 
-import {DataLoader} from './data-loader.service';
-import { NodesTypeListComponent } from './nodes-type-list/nodes-type-list.component';
-import { GenesListComponent } from './genes-list/genes-list.component';
+import {DataLoader} from './services/data-loader.service';
+import { NodesTypeListComponent } from './components/nodes-type-list/nodes-type-list.component';
+import { GenesListComponent } from './components/genes-list/genes-list.component';
 
 @NgModule({
   declarations: [

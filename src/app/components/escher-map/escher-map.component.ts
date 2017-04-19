@@ -1,6 +1,5 @@
 import { Component, DoCheck } from '@angular/core';
-import {DataLoader} from '../data-loader.service';
-import { GeneType } from '../models/gene-type';
+import {DataLoader} from '../../services/data-loader.service';
 import * as d3 from 'd3';
 
 @Component({
@@ -30,12 +29,13 @@ export class EscherMapComponent implements DoCheck {
 
   changePathwayColor(newValue:number){
     this.selectedButton = newValue;
+    var selection = d3.selectAll('path.segment')
 
     if(newValue == 1){
-      d3.selectAll('path.segment').style("stroke", "#334E75");
+      selection.style("stroke", "#334E75");
     }
     if(newValue == 2){
-      d3.selectAll('path.segment').style("stroke", "green");
+      selection.style("stroke", "green");
     }
 
   }

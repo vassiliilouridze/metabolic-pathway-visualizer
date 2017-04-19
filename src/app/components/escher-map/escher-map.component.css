@@ -5,5 +5,8 @@
 
 .panel-body {
   height: calc(100vh - 200px);
+}
 
+.search-menu-container{
+  display:none;
 }

@@ -1,20 +1,16 @@
 import { Injectable } from '@angular/core';
-import { NodeType } from './models/node-type';
-import { GeneType } from './models/gene-type';
+import { NodeType } from '../models/node-type';
+import { GeneType } from '../models/gene-type';
 import * as d3 from 'd3';
 
 @Injectable()
 export class DataLoader {
   options = {
-    menu: 'zoom',
+    menu: 'all',
     scroll_behavior: 'zoom',
-    use_3d_transform: false,
-    enable_editing: false,
-    enable_keys: false,
-    text_label: true,
-    enable_tooltips: false,
-    tooltip_component: false,
-    full_screen_button: true,
+    enable_editing:true,
+    enable_keys:true,
+    enable_tooltips:false
   }
   escherMap:any;
   nodesTypesObject = {};
@@ -44,12 +40,23 @@ export class DataLoader {
 
   buildMap(fileInJSON){
     this.escherMap = escher.Builder(fileInJSON, null, null, d3.select('#map_container'), this.options);
+    d3.select('.search-menu-container').style("display","none");
     return this.escherMap;
   }
 
   enablePathwaySelection(){
     d3.selectAll('path.segment').on("click", (data) => {
-      this.selectedPathway = 'From: '+data.from_node_id+', To: '+data.to_node_id;
+      var nameFrom = this.escherMap.map.nodes[data.from_node_id].node_type;
+      var nameTo= this.escherMap.map.nodes[data.to_node_id].node_type;
+
+      if(this.escherMap.map.nodes[data.from_node_id].name != undefined){
+        nameFrom = this.escherMap.map.nodes[data.from_node_id].name;
+      }
+      if(this.escherMap.map.nodes[data.to_node_id].name != undefined){
+        nameTo = this.escherMap.map.nodes[data.to_node_id].name;
+      }
+
+      this.selectedPathway = 'From: '+nameFrom+', To: '+nameTo;
     });
   }
 
@@ -58,7 +65,7 @@ export class DataLoader {
       this.nodesTypes = [];
       this.nodesTypesObject = {};
     }
-    
+
     for(var i in this.escherMap.map.nodes){
       if(this.nodesTypesObject[this.escherMap.map.nodes[i].node_type] != null){
         this.nodesTypesObject[this.escherMap.map.nodes[i].node_type]++;

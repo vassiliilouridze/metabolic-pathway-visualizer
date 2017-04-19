@@ -1,6 +1,6 @@
 import { Component, DoCheck } from '@angular/core';
-import {DataLoader} from '../data-loader.service';
-import { GeneType } from '../models/gene-type';
+import {DataLoader} from '../../services/data-loader.service';
+import { GeneType } from '../../models/gene-type';
 
 @Component({
   selector: 'genes-list',

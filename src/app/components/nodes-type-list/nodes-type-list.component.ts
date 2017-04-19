@@ -1,6 +1,6 @@
 import { Component, DoCheck} from '@angular/core';
-import {DataLoader} from '../data-loader.service';
-import { NodeType } from '../models/node-type';
+import {DataLoader} from '../../services/data-loader.service';
+import { NodeType } from '../../models/node-type';
 
 @Component({
   selector: 'nodes-type-list',
