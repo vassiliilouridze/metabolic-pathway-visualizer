@@ -41,8 +41,6 @@ export class DataLoader {
       this.nodesTypes.push(newNodeType);
     }
 
-    console.log(this.nodesTypes);
-
     return this.nodesTypes;
   }
 
@@ -65,7 +63,7 @@ export class DataLoader {
         this.geneTypes.push(newGeneType);
       }
     }
-
+    
     return this.geneTypes;
   }
 

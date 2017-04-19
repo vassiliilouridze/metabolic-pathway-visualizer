@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import {DataLoader} from '../data-loader.service';
 import { GeneType } from '../models/gene-type';
 import * as d3 from 'd3';
@@ -12,7 +12,6 @@ export class EscherMapComponent implements OnInit, DoCheck {
 
   escherMap:any;
   map_id:string = null;
-  geneTypes: GeneType[] = [];
 
   constructor(private dataLoader: DataLoader) { }
 
@@ -23,7 +22,6 @@ export class EscherMapComponent implements OnInit, DoCheck {
   ngDoCheck() {
     if(this.dataLoader.escherMap.map.map_name !== "new_map" && this.map_id != this.escherMap.map.map_id){
       this.map_id = this.escherMap.map.map_id;
-      this.geneTypes = this.dataLoader.makeListGenesThatAreInMoreThanOneReaction();
     }
   }
 

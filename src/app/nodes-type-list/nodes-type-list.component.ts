@@ -9,7 +9,7 @@ import { NodeType } from '../models/node-type';
 })
 export class NodesTypeListComponent implements DoCheck {
 
-  nodesTypeListDone = false;
+  nodesTypeListDone:boolean = false;
   nodesTypes: NodeType[] = [];
 
   constructor(private dataLoader: DataLoader) {}
