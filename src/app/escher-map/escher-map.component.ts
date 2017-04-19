@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 import {DataLoader} from '../data-loader.service';
 import { GeneType } from '../models/gene-type';
 import * as d3 from 'd3';
@@ -8,26 +8,23 @@ import * as d3 from 'd3';
   templateUrl: './escher-map.component.html',
   styleUrls: ['./escher-map.component.css']
 })
-export class EscherMapComponent implements OnInit, DoCheck {
+export class EscherMapComponent implements DoCheck {
 
   escherMap:any;
+  file: any;
   map_id:string = null;
   selectedPathway:string;
 
   constructor(private dataLoader: DataLoader) { }
 
-  ngOnInit() {
-     this.escherMap = this.dataLoader.buildMap();
-  }
-
   ngDoCheck() {
-    if(this.dataLoader.escherMap.map.map_name !== "new_map" && this.map_id != this.escherMap.map.map_id){
-      this.map_id = this.escherMap.map.map_id;
-      this.dataLoader.enablePathwaySelection();
-    }
     if(this.selectedPathway != this.dataLoader.selectedPathway){
       this.selectedPathway = this.dataLoader.selectedPathway;
     }
   }
 
+  async readFile() {
+    this.file = (<HTMLInputElement>document.getElementById("file")).files[0];
+    await this.dataLoader.getFile(this.file);
+  }
 }

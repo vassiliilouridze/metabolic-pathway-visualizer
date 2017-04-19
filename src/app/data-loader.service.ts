@@ -6,7 +6,7 @@ import * as d3 from 'd3';
 @Injectable()
 export class DataLoader {
   options = {
-    menu: 'all',
+    menu: 'zoom',
     scroll_behavior: 'zoom',
     use_3d_transform: false,
     enable_editing: false,
@@ -25,10 +25,25 @@ export class DataLoader {
   geneTypes: GeneType[] = [];
   selectedPathway:string;
 
-  constructor() { }
+  constructor() {}
 
-  buildMap(){
-    this.escherMap = escher.Builder(null, null, null, d3.select('#map_container'), this.options);
+  async getFile(file){
+   return new Promise((resolve,reject) => {
+     var fileReader = new FileReader();
+     fileReader.readAsBinaryString(file);
+     fileReader.onload = (event:any) => {
+        var fileInJSON=JSON.parse(fileReader.result);
+        this.buildMap(fileInJSON);
+        this.makeListNodeTypes();
+        this.makeListGenesThatAreInMoreThanOneReaction();
+        this.enablePathwaySelection();
+        resolve(fileInJSON);
+     }
+   });
+  }
+
+  buildMap(fileInJSON){
+    this.escherMap = escher.Builder(fileInJSON, null, null, d3.select('#map_container'), this.options);
     return this.escherMap;
   }
 
@@ -39,7 +54,11 @@ export class DataLoader {
   }
 
   makeListNodeTypes(){
-    var nodesArrayLength = this.escherMap.map.nodes.length;
+    if(this.nodesTypes.length > 0){
+      this.nodesTypes = [];
+      this.nodesTypesObject = {};
+    }
+    
     for(var i in this.escherMap.map.nodes){
       if(this.nodesTypesObject[this.escherMap.map.nodes[i].node_type] != null){
         this.nodesTypesObject[this.escherMap.map.nodes[i].node_type]++;
@@ -57,6 +76,11 @@ export class DataLoader {
   }
 
   makeListGenesThatAreInMoreThanOneReaction(){
+    if(this.geneTypes.length > 0){
+      this.geneTypes = [];
+      this.genesTypesObject = {};
+    }
+
     for(var i in this.escherMap.map.reactions){
       for(var j in this.escherMap.map.reactions[i].genes){
 

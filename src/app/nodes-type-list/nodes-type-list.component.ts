@@ -9,15 +9,15 @@ import { NodeType } from '../models/node-type';
 })
 export class NodesTypeListComponent implements DoCheck {
 
-  nodesTypeListDone:boolean = false;
+  mapName:string;
   nodesTypes: NodeType[] = [];
 
   constructor(private dataLoader: DataLoader) {}
 
   ngDoCheck() {
-    if(this.nodesTypeListDone === false && this.dataLoader.escherMap.map.map_name !== "new_map"){
-      this.nodesTypeListDone = true;
-      this.nodesTypes = this.dataLoader.makeListNodeTypes();
+    if(this.dataLoader.escherMap != undefined && this.dataLoader.escherMap.map.map_name != this.mapName){
+      this.mapName = this.dataLoader.escherMap.map.map_name;
+      this.nodesTypes = this.dataLoader.nodesTypes;
     }
   }
 

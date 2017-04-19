@@ -1,22 +1,31 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">
-      Escher map
-    </h3>
-  </div>
-  <div class="panel-body">
-    <div class="row_escher">
-      <div class="col-md-12">
-        <figure>
-          <div class="escher-container" id="map_container" style="height: 750px; width: 100%; overflow: hidden"></div>
-        </figure>
+    <div class="row">
+      <div class="col-md-6">
+        <h2 class="panel-title">
+          Escher map
+        </h2>
+      </div>
+      <div class="col-md-6">
+        <label class="btn btn-default btn-primary pull-right">
+          <input type="file" class="form-control-file pull-right" id="file" (change)="readFile()" style="display:none;">
+          Load JSON data
+        </label>
       </div>
     </div>
   </div>
+
+  <div class="panel-body panel-body-without-padding">
+    <div class="row_escher" style="height:100%; width: 100%;">
+      <div class="escher-container" id="map_container" style="height:100%; width: 100%; overflow: hidden"></div>
+    </div>
+  </div>
+
   <div class="panel-footer">
     <button>Default</button>
     <span class="pull-right">
       {{selectedPathway}}
     </span>
   </div>
+
 </div>

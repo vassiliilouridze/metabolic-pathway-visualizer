@@ -9,15 +9,15 @@ import { GeneType } from '../models/gene-type';
 })
 export class GenesListComponent implements DoCheck {
 
-  geneTypesListDone:boolean = false;
   geneTypes: GeneType[] = [];
+  mapName:string;
 
   constructor(private dataLoader: DataLoader) {}
 
   ngDoCheck() {
-    if(this.geneTypesListDone === false && this.dataLoader.escherMap.map.map_name !== "new_map"){
-      this.geneTypesListDone = true;
-      this.geneTypes = this.dataLoader.makeListGenesThatAreInMoreThanOneReaction();
+    if(this.dataLoader.escherMap != undefined && this.dataLoader.escherMap.map.map_name != this.mapName){
+      this.mapName = this.dataLoader.escherMap.map.map_name;
+      this.geneTypes = this.dataLoader.geneTypes;
     }
   }
 
