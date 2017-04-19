@@ -5,12 +5,17 @@ import * as d3 from 'd3';
 
 @Injectable()
 export class DataLoader {
-  options = { menu: 'all',
-              use_3d_transform: false,
-              enable_editing: false,
-              fill_screen: false,
-              reaction_styles: ['color', 'size', 'text'],
-              enable_tooltips: false };
+  options = {
+    menu: 'all',
+    scroll_behavior: 'zoom',
+    use_3d_transform: false,
+    enable_editing: false,
+    enable_keys: false,
+    text_label: true,
+    enable_tooltips: false,
+    tooltip_component: false,
+    full_screen_button: true,
+  }
   escherMap:any;
   nodesTypesObject = {};
   newNodeType: NodeType;
@@ -18,12 +23,19 @@ export class DataLoader {
   genesTypesObject = {};
   newGeneType: GeneType;
   geneTypes: GeneType[] = [];
+  selectedPathway:string;
 
   constructor() { }
 
   buildMap(){
     this.escherMap = escher.Builder(null, null, null, d3.select('#map_container'), this.options);
     return this.escherMap;
+  }
+
+  enablePathwaySelection(){
+    d3.selectAll('path.segment').on("click", (data) => {
+      this.selectedPathway = 'From: '+data.from_node_id+', To: '+data.to_node_id;
+    });
   }
 
   makeListNodeTypes(){
@@ -63,7 +75,7 @@ export class DataLoader {
         this.geneTypes.push(newGeneType);
       }
     }
-    
+
     return this.geneTypes;
   }
 

@@ -12,6 +12,7 @@ export class EscherMapComponent implements OnInit, DoCheck {
 
   escherMap:any;
   map_id:string = null;
+  selectedPathway:string;
 
   constructor(private dataLoader: DataLoader) { }
 
@@ -22,6 +23,10 @@ export class EscherMapComponent implements OnInit, DoCheck {
   ngDoCheck() {
     if(this.dataLoader.escherMap.map.map_name !== "new_map" && this.map_id != this.escherMap.map.map_id){
       this.map_id = this.escherMap.map.map_id;
+      this.dataLoader.enablePathwaySelection();
+    }
+    if(this.selectedPathway != this.dataLoader.selectedPathway){
+      this.selectedPathway = this.dataLoader.selectedPathway;
     }
   }
 
