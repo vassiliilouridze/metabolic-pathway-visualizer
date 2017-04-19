@@ -22,7 +22,13 @@
   </div>
 
   <div class="panel-footer">
-    <button>Default</button>
+    <div *ngIf="file">
+      <div class="btn-group" id="toggle_event_editing">
+        <button type="button" class="btn btn-primary" [ngClass]="{'selectedChangePathwayColorBtn': selectedButton === 1}" (click)="changePathwayColor(1)">Default color</button>
+        <button type="button" class="btn btn-success" [ngClass]="{'selectedChangePathwayColorBtn': selectedButton === 2 }" (click)="changePathwayColor(2)">Green color</button>
+      </div>
+    </div>
+
     <span class="pull-right">
       {{selectedPathway}}
     </span>

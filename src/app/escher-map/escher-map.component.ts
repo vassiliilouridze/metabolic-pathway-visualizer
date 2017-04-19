@@ -11,9 +11,9 @@ import * as d3 from 'd3';
 export class EscherMapComponent implements DoCheck {
 
   escherMap:any;
-  file: any;
-  map_id:string = null;
+  file: any = null;
   selectedPathway:string;
+  selectedButton:number;
 
   constructor(private dataLoader: DataLoader) { }
 
@@ -26,5 +26,17 @@ export class EscherMapComponent implements DoCheck {
   async readFile() {
     this.file = (<HTMLInputElement>document.getElementById("file")).files[0];
     await this.dataLoader.getFile(this.file);
+  }
+
+  changePathwayColor(newValue:number){
+    this.selectedButton = newValue;
+
+    if(newValue == 1){
+      d3.selectAll('path.segment').style("stroke", "#334E75");
+    }
+    if(newValue == 2){
+      d3.selectAll('path.segment').style("stroke", "green");
+    }
+
   }
 }
